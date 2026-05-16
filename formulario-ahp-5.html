@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa AHP - Armazenamento de Energia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .radio-group input:checked + label {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        .radio-label {
+            transition: all 0.2s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-800 p-4 md:p-8 font-sans">
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="bg-blue-800 p-6 md:p-8 text-white">
+            <h1 class="text-2xl md:text-3xl font-bold mb-3">Avaliação de critérios para sistemas de armazenamento de energia no Nordeste do Brasil</h1>
+            <p class="text-blue-100 text-sm md:text-base leading-relaxed">
+                Prezada(o) especialista,<br><br>
+                Esta pesquisa compõe um estudo sobre a seleção de tecnologias de Sistemas de Armazenamento de Energia (ESS) para mitigação do curtailment de fontes renováveis na região Nordeste do Brasil. A pesquisa utiliza o método <strong>Analytic Hierarchy Process (AHP)</strong> para definir pesos relativos entre dimensões e critérios técnicos, econômicos e ambientais.<br><br>
+                O preenchimento leva aproximadamente 10 minutos. As respostas serão utilizadas exclusivamente para fins acadêmicos e metodológicos.
+            </p>
+        </div>
+
+        <div class="p-6 md:p-8">
+            <!-- Dados do Especialista -->
+            <div class="mb-8 bg-blue-50 p-6 rounded-xl border border-blue-100">
+                <h2 class="text-lg font-bold text-blue-900 mb-2">Dados da(o) especialista</h2>
+                <p class="text-sm text-blue-700 mb-4">As informações abaixo são opcionais e serão utilizadas apenas para caracterização metodológica da amostra.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nome Completo:</label>
+                        <input type="text" id="specialist-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="Seu nome">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Instituição ou empresa:</label>
+                        <input type="text" id="specialist-institution" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="Sua instituição">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instruções e Definições -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+                <!-- Instruções -->
+                <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+                    <h3 class="font-bold text-gray-800 mb-3 uppercase text-sm tracking-wider">Instruções de Preenchimento</h3>
+                    <p class="text-sm text-gray-600 mb-4">
+                        A avaliação será feita por meio de comparações pareadas. Em cada pergunta, compare dois critérios/dimensões e indique qual possui maior importância para a seleção de tecnologias de armazenamento.
+                    </p>
+                    <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                        <p class="text-xs font-bold text-gray-500 mb-2 uppercase">Escala de Saaty</p>
+                        <ul class="text-sm space-y-1 text-gray-700">
+                            <li><span class="font-bold text-blue-600">1</span> — Igual importância</li>
+                            <li><span class="font-bold text-blue-600">3</span> — Importância moderada</li>
+                            <li><span class="font-bold text-blue-600">5</span> — Importância forte</li>
+                            <li><span class="font-bold text-blue-600">7</span> — Importância muito forte</li>
+                            <li><span class="font-bold text-blue-600">9</span> — Importância extrema</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Definições -->
+                <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 h-96 overflow-y-auto">
+                    <h3 class="font-bold text-gray-800 mb-3 uppercase text-sm tracking-wider flex items-center justify-between">
+                        Definição dos Critérios
+                        <span class="text-xs font-normal text-gray-500 lowercase bg-gray-200 px-2 py-1 rounded">Role para ler</span>
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-semibold text-blue-800 border-b pb-1 mb-2">Dimensão Técnica</h4>
+                            <ul class="text-sm text-gray-600 space-y-2">
+                                <li><strong>Faixa de duração útil:</strong> intervalo de tempo durante o qual um sistema de armazenamento consegue manter o fornecimento de energia em determinada potência de descarga.</li>
+                                <li><strong>Tempo de resposta:</strong> tempo necessário para obter a potência especificada para uma dada tecnologia.</li>
+                                <li><strong>Degradação:</strong> intervalo estimado durante o qual o equipamento desempenha suas funções com determinado nível de eficiência.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-green-700 border-b pb-1 mb-2">Dimensão Econômica</h4>
+                            <ul class="text-sm text-gray-600 space-y-2">
+                                <li><strong>LCOS:</strong> custo presente por unidade de eletricidade descarregada ao longo do período de amortização do sistema de armazenamento.</li>
+                                <li><strong>Tendência de custo:</strong> trajetória de redução de custos de uma tecnologia, associada à expansão da produção, ganho de escala, aperfeiçoamento de processos, inovação e difusão comercial.</li>
+                                <li><strong>Criação de empregos:</strong> potencial de geração de postos de trabalho ao longo da cadeia de valor de uma tecnologia, incluindo manufatura, implantação, operação, manutenção, infraestrutura e serviços de suporte.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="font-semibold text-emerald-700 border-b pb-1 mb-2">Dimensão Ambiental</h4>
+                            <ul class="text-sm text-gray-600 space-y-2">
+                                <li><strong>Pegada de carbono:</strong> quantidade total de gases de efeito estufa liberados na atmosfera.</li>
+                                <li><strong>Uso do solo:</strong> forma como o solo é utilizado para determinada finalidade, expressa no estudo em m²/MWh.</li>
+                                <li><strong>Materiais críticos:</strong> quantidade de componentes minerais utilizados na fabricação de equipamentos e cuja ausência pode causar impactos econômicos, ambientais, de segurança e sociais.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="mb-10 border-gray-200">
+
+            <div id="form-container" class="space-y-12">
+                <!-- Seções geradas via JS -->
+            </div>
+
+            <div class="mt-12 flex justify-center border-t pt-8">
+                <button id="btn-validate" onclick="validateAndCalculate()" class="bg-gray-400 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors cursor-not-allowed" disabled>
+                    Preencha as comparações para Validar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Resultados -->
+    <div id="result-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Resultados da Avaliação (Pesos Globais)</h2>
+            <div id="modal-content" class="text-gray-600"></div>
+        </div>
+    </div>
+
+    <script>
+        // Definição da Estrutura Hierárquica
+        const hierarchy = {
+            id: 'dimensoes',
+            title: '1. Comparação entre Dimensões',
+            items: ['Técnica', 'Econômica', 'Ambiental'],
+            children: [
+                {
+                    id: 'tecnica',
+                    title: '2. Dimensão Técnica (Comparações Internas)',
+                    items: ['Faixa de duração útil', 'Tempo de resposta', 'Degradação']
+                },
+                {
+                    id: 'economica',
+                    title: '3. Dimensão Econômica (Comparações Internas)',
+                    items: ['LCOS', 'Tendência de custo', 'Criação de empregos']
+                },
+                {
+                    id: 'ambiental',
+                    title: '4. Dimensão Ambiental (Comparações Internas)',
+                    items: ['Pegada de carbono', 'Uso do solo', 'Materiais críticos']
+                }
+            ]
+        };
+
+        // Estado das respostas
+        let state = {};
+
+        // Escala de Saaty
+        const saatyScale = [9, 7, 5, 3, 1, 3, 5, 7, 9];
+
+        function createRadioGroup(sectionId, itemA, itemB, index) {
+            let html = `
+            <div class="mb-6 p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow bg-gray-50">
+                <div class="flex justify-between font-semibold text-gray-700 mb-3 text-sm md:text-base">
+                    <span class="w-1/3 text-left">${itemA}</span>
+                    <span class="w-1/3 text-center text-gray-400">Igual</span>
+                    <span class="w-1/3 text-right">${itemB}</span>
+                </div>
+                <div class="flex justify-between items-center radio-group">`;
+
+            saatyScale.forEach((val, i) => {
+                const isLeft = i < 4;
+                const isCenter = i === 4;
+                const isRight = i > 4;
+                
+                // O valor real guardado: > 1 favorece Esquerda, < 1 favorece Direita
+                let realValue = isLeft ? val : (isCenter ? 1 : 1/val);
+                
+                // Cores para ajudar na visualização
+                let colorClass = isLeft ? 'border-blue-300 text-blue-600 hover:bg-blue-50' : 
+                                 (isRight ? 'border-indigo-300 text-indigo-600 hover:bg-indigo-50' : 
+                                 'border-gray-300 text-gray-600 hover:bg-gray-100');
+
+                html += `
+                    <div class="flex flex-col items-center flex-1">
+                        <input type="radio" 
+                               name="${sectionId}_${index}" 
+                               id="${sectionId}_${index}_${i}" 
+                               value="${realValue}" 
+                               class="hidden"
+                               onchange="updateState('${sectionId}', ${index}, this.value)">
+                        <label for="${sectionId}_${index}_${i}" 
+                               class="radio-label w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 ${colorClass} cursor-pointer font-medium text-xs md:text-sm"
+                               title="${isCenter ? 'Igual importância' : (val + ' - Favorece ' + (isLeft ? itemA : itemB))}">
+                            ${val}
+                        </label>
+                    </div>`;
+            });
+
+            html += `</div></div>`;
+            return html;
+        }
+
+        function renderSection(section) {
+            if (!state[section.id]) state[section.id] = { values: [], cr: null, weights: [] };
+            
+            let html = `
+            <div class="section-block" id="block_${section.id}">
+                <div class="flex justify-between items-center border-b pb-2 mb-4">
+                    <h2 class="text-xl font-bold text-gray-800">${section.title}</h2>
+                    <span id="cr_badge_${section.id}" class="text-sm font-semibold px-3 py-1 rounded-full bg-gray-200 text-gray-600">Aguardando...</span>
+                </div>
+                <div class="space-y-4">`;
+
+            // Gera as 3 comparações para uma matriz 3x3
+            let pairIndex = 0;
+            for (let i = 0; i < section.items.length; i++) {
+                for (let j = i + 1; j < section.items.length; j++) {
+                    html += createRadioGroup(section.id, section.items[i], section.items[j], pairIndex);
+                    pairIndex++;
+                }
+            }
+            
+            html += `</div></div>`;
+            return html;
+        }
+
+        function renderForm() {
+            const container = document.getElementById('form-container');
+            let formHtml = renderSection(hierarchy); // Dimensões Principais
+            
+            hierarchy.children.forEach(child => {
+                formHtml += renderSection(child); // Submatrizes
+            });
+
+            container.innerHTML = formHtml;
+        }
+
+        // Matemática do AHP
+        function calculateAHP(values3x3) {
+            // values3x3 é um array [ A/B, A/C, B/C ]
+            if(values3x3.length !== 3 || values3x3.includes(undefined)) return null;
+
+            const v1 = parseFloat(values3x3[0]); // A vs B
+            const v2 = parseFloat(values3x3[1]); // A vs C
+            const v3 = parseFloat(values3x3[2]); // B vs C
+
+            // Matriz 3x3
+            const matrix = [
+                [1, v1, v2],
+                [1/v1, 1, v3],
+                [1/v2, 1/v3, 1]
+            ];
+
+            // Soma das colunas
+            const colSums = [
+                matrix[0][0] + matrix[1][0] + matrix[2][0],
+                matrix[0][1] + matrix[1][1] + matrix[2][1],
+                matrix[0][2] + matrix[1][2] + matrix[2][2]
+            ];
+
+            // Normalização e Pesos (Eigenvector)
+            let weights = [0, 0, 0];
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    weights[i] += (matrix[i][j] / colSums[j]) / 3;
+                }
+            }
+
+            // Lambda Max
+            let lambdaMax = 0;
+            for (let i = 0; i < 3; i++) {
+                let rowSum = (matrix[i][0] * weights[0]) + (matrix[i][1] * weights[1]) + (matrix[i][2] * weights[2]);
+                lambdaMax += rowSum / weights[i];
+            }
+            lambdaMax = lambdaMax / 3;
+
+            // Índice de Consistência (CI) para n=3
+            const CI = (lambdaMax - 3) / (3 - 1);
+            
+            // Random Index (RI) para n=3 é 0.58
+            const CR = CI / 0.58;
+
+            return { weights, cr: CR };
+        }
+
+        function updateState(sectionId, index, value) {
+            state[sectionId].values[index] = value;
+            
+            // Verifica se a seção (matriz) está completamente respondida
+            if (state[sectionId].values.filter(v => v !== undefined).length === 3) {
+                const result = calculateAHP(state[sectionId].values);
+                state[sectionId].cr = result.cr;
+                state[sectionId].weights = result.weights;
+                
+                const badge = document.getElementById(`cr_badge_${sectionId}`);
+                const crPercent = (result.cr * 100).toFixed(1);
+                
+                if (result.cr <= 0.1) {
+                    badge.className = "text-sm font-semibold px-3 py-1 rounded-full bg-green-100 text-green-700";
+                    badge.innerHTML = `Consistente (CR: ${crPercent}%)`;
+                } else {
+                    badge.className = "text-sm font-semibold px-3 py-1 rounded-full bg-red-100 text-red-700";
+                    badge.innerHTML = `Inconsistente (CR: ${crPercent}%) - Por favor, revise`;
+                }
+            }
+
+            checkOverallReadiness();
+        }
+
+        function checkOverallReadiness() {
+            const btn = document.getElementById('btn-validate');
+            let allComplete = true;
+            let allConsistent = true;
+
+            const sections = [hierarchy.id, ...hierarchy.children.map(c => c.id)];
+            
+            sections.forEach(id => {
+                if (!state[id] || state[id].values.filter(v => v !== undefined).length !== 3) {
+                    allComplete = false;
+                }
+                if (state[id] && state[id].cr > 0.1) {
+                    allConsistent = false;
+                }
+            });
+
+            if (allComplete) {
+                if (allConsistent) {
+                    btn.disabled = false;
+                    btn.className = "bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all cursor-pointer";
+                    btn.innerHTML = "Finalizar e Ver Resultados";
+                } else {
+                    btn.disabled = true;
+                    btn.className = "bg-red-500 text-white px-8 py-3 rounded-lg font-semibold text-lg cursor-not-allowed opacity-75";
+                    btn.innerHTML = "Corrija as inconsistências vermelhas para continuar";
+                }
+            }
+        }
+
+        function validateAndCalculate() {
+            // Peso das Dimensões
+            const wDim = state.dimensoes.weights; // [Tec, Eco, Amb]
+            
+            // Calculando pesos globais
+            let globalWeights = [];
+            
+            // Técnica
+            hierarchy.children[0].items.forEach((item, i) => {
+                globalWeights.push({
+                    name: item,
+                    category: 'Técnica',
+                    value: (state.tecnica.weights[i] * wDim[0])
+                });
+            });
+
+            // Econômica
+            hierarchy.children[1].items.forEach((item, i) => {
+                globalWeights.push({
+                    name: item,
+                    category: 'Econômica',
+                    value: (state.economica.weights[i] * wDim[1])
+                });
+            });
+
+            // Ambiental
+            hierarchy.children[2].items.forEach((item, i) => {
+                globalWeights.push({
+                    name: item,
+                    category: 'Ambiental',
+                    value: (state.ambiental.weights[i] * wDim[2])
+                });
+            });
+
+            // Ordena pelo maior peso global
+            globalWeights.sort((a, b) => b.value - a.value);
+
+            // Captura os dados do especialista
+            const nomeEsp = document.getElementById('specialist-name').value || 'Não informado';
+            const instEsp = document.getElementById('specialist-institution').value || 'Não informado';
+
+            // Salva os dados globalmente para exportação
+            window.currentResults = {
+                nome: nomeEsp,
+                instituicao: instEsp,
+                pesosGlobais: globalWeights,
+                respostasBrutas: state
+            };
+
+            showResults(globalWeights);
+        }
+
+        function showResults(globalWeights) {
+            const modal = document.getElementById('result-modal');
+            const content = document.getElementById('modal-content');
+
+            let html = `<p class="mb-4">Sua avaliação foi logicamente consistente. Abaixo está a consolidação dos seus pesos globais:</p>`;
+            
+            html += `<div class="space-y-3">`;
+            globalWeights.forEach((item, index) => {
+                const percent = (item.value * 100).toFixed(1);
+                let barColor = item.category === 'Técnica' ? 'bg-blue-500' : 
+                               item.category === 'Econômica' ? 'bg-green-500' : 'bg-emerald-500';
+
+                html += `
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="font-medium text-gray-700">${index + 1}. ${item.name} <span class="text-xs text-gray-400">(${item.category})</span></span>
+                        <span class="font-bold">${percent}%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="${barColor} h-2.5 rounded-full" style="width: ${percent}%"></div>
+                    </div>
+                </div>`;
+            });
+            html += `</div>`;
+
+            // Botões de Ação
+            html += `
+            <div class="mt-8 pt-6 border-t border-gray-200 flex flex-col md:flex-row gap-4 justify-between items-center">
+                <p class="text-sm text-gray-600">Escolha como deseja salvar sua avaliação:</p>
+                <div class="flex flex-wrap gap-3">
+                    <button onclick="downloadCSV()" class="bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                        Baixar em CSV
+                    </button>
+                    <button onclick="sendToGoogleSheets()" id="btn-enviar" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-colors font-bold shadow-md">
+                        Enviar Resposta
+                    </button>
+                </div>
+            </div>`;
+
+            html += `
+            <div class="mt-4 text-center">
+                <button onclick="closeModal()" class="text-sm text-gray-500 hover:text-gray-800 underline">Fechar e revisar respostas</button>
+            </div>`;
+
+            content.innerHTML = html;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('result-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function downloadCSV() {
+            if (!window.currentResults) return;
+            const pesos = window.currentResults.pesosGlobais;
+            const respostasBrutas = window.currentResults.respostasBrutas;
+            
+            // Inclui o nome e instituição no CSV
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += `Nome:,${window.currentResults.nome}\n`;
+            csvContent += `Instituicao:,${window.currentResults.instituicao}\n\n`;
+            
+            csvContent += "--- PESOS GLOBAIS ---\n";
+            csvContent += "Criterio,Dimensao,Peso_Global\n";
+            pesos.forEach(row => { csvContent += `${row.name},${row.category},${row.value}\n`; });
+
+            // Inclui os valores brutos das comparações par a par
+            csvContent += "\n--- COMPARACOES PAREADAS (VALORES BRUTOS) ---\n";
+            csvContent += "Matriz,Comparacao,Valor_Atribuido\n";
+
+            const getItems = (id) => {
+                if (id === 'dimensoes') return hierarchy.items;
+                const child = hierarchy.children.find(c => c.id === id);
+                return child ? child.items : [];
+            };
+
+            Object.keys(respostasBrutas).forEach(sectionId => {
+                const items = getItems(sectionId);
+                const values = respostasBrutas[sectionId].values;
+                if (items.length === 3 && values.length === 3) {
+                    csvContent += `${sectionId},${items[0]} vs ${items[1]},${values[0]}\n`;
+                    csvContent += `${sectionId},${items[0]} vs ${items[2]},${values[1]}\n`;
+                    csvContent += `${sectionId},${items[1]} vs ${items[2]},${values[2]}\n`;
+                }
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "resultado_ahp_armazenamento.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function sendToGoogleSheets() {
+            // ==========================================
+            // COLE SUA URL AQUI NAS ASPAS ABAIXO!
+            // ==========================================
+            const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSmGZt2q8ioTYl9UxevI75ONSycWlDvMjib0VX-Yo5cu-KIUaTR69-tHx2ZkQF6HO1pA/exec"; 
+            
+            const btn = document.getElementById('btn-enviar');
+            
+            if (GOOGLE_SCRIPT_URL === "SUA_URL_AQUI") {
+                alert("Aviso: O link do Google Sheets ainda não foi configurado na linha 329 do arquivo HTML.");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = "Enviando...";
+
+            const payload = {
+                timestamp: new Date().toLocaleString('pt-BR'),
+                nome: window.currentResults.nome,
+                instituicao: window.currentResults.instituicao,
+                pesos: window.currentResults.pesosGlobais,
+                respostasBrutas: window.currentResults.respostasBrutas
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                btn.innerHTML = "✓ Enviado!";
+                btn.classList.replace('bg-blue-600', 'bg-green-600');
+                btn.classList.replace('hover:bg-blue-700', 'hover:bg-green-700');
+                alert("Sua resposta foi salva com sucesso no banco de dados da pesquisa. Muito obrigado!");
+            })
+            .catch((error) => {
+                console.error('Erro:', error);
+                alert('Erro na conexão. Por favor, baixe o CSV e envie por email para o pesquisador.');
+                btn.disabled = false;
+                btn.innerHTML = "Tentar Novamente";
+            });
+        }
+
+        // Inicializa o formulário
+        window.onload = renderForm;
+    </script>
+</body>
+</html>
